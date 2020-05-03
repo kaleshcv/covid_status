@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>What is happening- India</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+</head>
+<body>
+<!------------------Navigation------------------------>
+    <nav class="navbar navbar-expand-lg navbar-light" style="background-color:Grey;">
+          <a class="navbar-brand" href="#" style="color:whitesmoke;">WHI</a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                  <li class="nav-item">
+                    <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="#">About</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="#">Covid-19</a>
+                  </li>
+            </ul>
+          </div>
+    </nav>
+
+<!--------------body-------------------------->
+
+<div class="card container-lg mt-5">
+  <div class="card-header">
+      <h5>Covid-19 Statewise status</h5>
+  </div>
+  <div class="card-body">
+    <blockquote class="blockquote mb-0">
+
+        <p id="date" style="font-size: 12px;font-style: italic;color: darkslategray;"></p><script>document.getElementById("date").innerHTML = Date();</script>
+            <cite title="Source Title" style="font-size: medium">Statewise data</cite>
+                <span class="badge badge-secondary">New</span>
+
+                <table class="table mt-2" style="font-size: 16px;background-color:whitesmoke;">
+                  <thead style="lightblue">
+                    <th>State</th>
+                    <th class="text-center">Total Positive Cases</th>
+                    <th class="text-center">Total Recovered </th>
+                    <th class="text-center">Death</th>
+                  </thead>
+
+                  {% for state in states %}
+                  <tr>
+                    <td>{{state.state_name}}</td>
+                    <td class="text-center">{{state.new_positive}}</td>
+                    <td class="text-center">{{state.new_cured}}</td>
+                    <td class="text-center">{{state.new_death}}</td>
+                  </tr>
+                  {% endfor %}
+                </table>
+
+        <footer class="blockquote-footer">Visit Official Govt. Site <cite title="Source Title"><a href="https://www.mygov.in/corona-data/covid19-statewise-status/">www.mygov.in/corona-data/covid19-statewise-status</a></cite></footer>
+    </blockquote>
+  </div>
+</div>
+
+<!--------------footer-------------------------->
+
+        <div class="card text-center" style="background-color:grey;">
+          <div class="card-header">
+            copyright@WHI
+          </div>
+        </div>
+</body>
+</html>

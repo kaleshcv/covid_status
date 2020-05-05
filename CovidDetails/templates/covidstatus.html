@@ -1,0 +1,41 @@
+
+{% extends 'base.html' %}
+{% block title%} Covid status- India{% endblock %}
+{% block main %}
+{% load static %}
+<!--------------body-------------------------->
+
+<div class="card container-lg mt-5">
+  <div class="card-header">
+      <h2>Covid-19 Statewise status</h2>
+  </div>
+  <div class="card-body">
+    <blockquote class="blockquote mb-0">
+
+        <p id="date" style="font-size: 12px;font-style: italic;color: darkslategray;"></p><script>document.getElementById("date").innerHTML = Date();</script>
+            <cite title="Source Title" style="font-size: medium">Statewise data</cite>
+                <span class="badge badge-secondary">New</span>
+
+                <table class="table mt-2" style="font-size: 16px;background-color:whitesmoke;">
+                  <thead style="lightblue">
+                    <th>State</th>
+                    <th class="text-center">Total Positive Cases</th>
+                    <th class="text-center">Total Recovered </th>
+                    <th class="text-center">Death</th>
+                  </thead>
+
+                  {% for state in states %}
+                  <tr>
+                    <td>{{state.state_name}}</td>
+                    <td class="text-center">{{state.new_positive}}</td>
+                    <td class="text-center">{{state.new_cured}}</td>
+                    <td class="text-center">{{state.new_death}}</td>
+                  </tr>
+                  {% endfor %}
+                </table>
+
+        <footer class="blockquote-footer">Visit Official Govt. Site <cite title="Source Title"><a href="https://www.mygov.in/corona-data/covid19-statewise-status/">www.mygov.in/corona-data/covid19-statewise-status</a></cite></footer>
+    </blockquote>
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% block title%} Destinations{% endblock %}
+{% block main %}
+{% load static %}
+
+<div class="container-lg mt-5">
+        <h2>Top Destinations</h2>
+        <div class="row row-cols-1 row-cols-md-3 mt-5">
+            {% for dest in destinations %}
+             <div class="col mb-4">
+                <div class="card">
+                  <img src="{{dest.dest_img}}" class="card-img-top" alt="...">
+                  <div class="card-body">
+                    <h5 class="card-title">{{dest.dest_name}}</h5>
+                    <p class="card-text">{{dest.dest_desc}}</p>
+                    <p class="card-text"><small class="text-muted">Price Starts from: </small> {{dest.dest_price}}</p>
+                  </div>
+                </div>
+              </div>
+            {% endfor %}
+        </div>
+</div>
+
+{% endblock %}

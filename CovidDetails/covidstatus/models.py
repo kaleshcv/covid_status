@@ -10,7 +10,7 @@ class Destination(models.Model):
 
 class Blog(models.Model):
     blog_head=models.CharField(max_length=100)
-    blog_para1=models.TextField()
+    blog_para1=models.TextField(max_length=500)
     blog_para2=models.TextField()
     blog_date=models.DateField(dt.now())
     blog_author=models.CharField(max_length=30)

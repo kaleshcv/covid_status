@@ -3,23 +3,26 @@
 {% block main %}
 {% load static %}
 
-<div class="container-lg mt-5">
-    <h2>Trending Blogs</h2>
-    {% for blog in blogs %}
-    {% if blog.id < 6 %}
-    <div class="media mt-5">
-          <img src="{% static 'images/t.png' %}" class="align-self-start mr-3" style="width:50px;height:50px;">
-          <div class="media-body">
-            <h5 class="mt-0"><a href="blogdetails">{{blog.blog_head}}</a></h5>
-            <p>{{blog.blog_para1}}</p>
-            <p>{{blog.blog_para2}}</p>
-            <small class="text-muted">Posted on: </small><p>{{blog.blog_date}}</p>
-              <small class="text-muted">Author: </small><p>{{blog.blog_author}}</p>
-          </div>
-    </div>
-    {% endif %}
-    {% endfor %}
+<div class="container mt-5">
 
+    <div class="jumbotron mt-5" style="background-color: #f5f5ef;color:black;">
+        <p> Some Text ::: In today's world internet is the most popular way of connecting with the people. you will learn the essential web development technologies along with real life practice examples, so that you can create your own website to connect with the people around the world.</p>
+        <p><a href="" class="btn btn-secondary">Start writing today</a></p>
+    </div>
+
+    <h2>Featured Blogs</h2>
+    <div class="row">
+        {% for blog in blogs %}
+        <div class="col-md-6 col-lg-4 col-xl-3 mt-3">
+            <h6 class="mt-0"><a href="blogdetails" style="color:black">{{blog.blog_head}}</a></h6>
+            <p style="color:darkslategrey;">{{blog.blog_para1}}</p>
+            <small class="text-muted">Posted on: </small><small>{{blog.blog_date}}</small>
+            <small class="text-muted">Author: </small><small>{{blog.blog_author}}</small>
+            <button type="button" class="btn btn-outline-secondary mt-3 container" style="max-width:200px;"><a href="dest" style="color:black;">Read More</a></button>
+        </div>
+        {% endfor %}
+    </div>
 </div>
+
 
 {% endblock %}

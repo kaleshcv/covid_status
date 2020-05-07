@@ -22,6 +22,6 @@ urlpatterns = [
     path('',homepage),
     path('dest', destinations),
     path('blogs', blogs),
-    path('destinationdetails',destinationsdetails)
+    path('dest/details',destinationsdetails)
 
 ]

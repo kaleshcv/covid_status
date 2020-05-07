@@ -37,3 +37,10 @@ def blogs(req):
     data={'blogs':all_blogs}
     res = template.render(data,req)
     return HttpResponse(res)
+
+def destinationsdetails(req):
+    template = loader.get_template('destinationdetails.html')
+    all_dest = Destination.objects.all()
+    data={'destinations':all_dest}
+    res = template.render(data,req)
+    return HttpResponse(res)

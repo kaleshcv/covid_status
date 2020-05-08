@@ -15,7 +15,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from .views import covidstatus,homepage,destinations,blogs,contact,gallery
+from .views import homepage,destinations,blogs,contact,gallery
 
 urlpatterns = [
     path('',homepage),

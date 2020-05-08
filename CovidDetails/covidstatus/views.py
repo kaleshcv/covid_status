@@ -17,7 +17,7 @@ def covidstatus(req):
 
 
 def homepage(req):
-    template = loader.get_template('index.html')
+    template = loader.get_template('index1.html')
     all_dest = Destination.objects.all()
     all_blogs=Blog.objects.all()
     data={'destinations':all_dest,'blogs':all_blogs}

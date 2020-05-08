@@ -18,7 +18,6 @@ from django.urls import path
 from .views import covidstatus,homepage,destinations,blogs,contact,gallery
 
 urlpatterns = [
-    path('covid', covidstatus),
     path('',homepage),
     path('dest', destinations),
     path('blogs', blogs),

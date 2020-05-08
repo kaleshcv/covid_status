@@ -3,26 +3,42 @@
 {% block main %}
 {% load static %}
 
-<div class="container mt-5">
 
-    <div class="jumbotron mt-5" style="background-color: #f5f5ef;color:black;">
-        <p> Some Text ::: In today's world internet is the most popular way of connecting with the people. you will learn the essential web development technologies along with real life practice examples, so that you can create your own website to connect with the people around the world.</p>
-        <p><a href="" class="btn btn-secondary">Start writing today</a></p>
-    </div>
+ <!-- MAIN -->
+    <main role="main">
 
-    <h2>Featured Blogs</h2>
-    <div class="row">
-        {% for blog in blogs %}
-        <div class="col-md-6 col-lg-4 col-xl-3 mt-3">
-            <h6 class="mt-0"><a href="blogdetails" style="color:black">{{blog.blog_head}}</a></h6>
-            <p style="color:darkslategrey;">{{blog.blog_para1}}</p>
-            <small class="text-muted">Posted on: </small><small>{{blog.blog_date}}</small>
-            <small class="text-muted">Author: </small><small>{{blog.blog_author}}</small>
-            <button type="button" class="btn btn-outline-secondary mt-3 container" style="max-width:200px;"><a href="dest" style="color:black;">Read More</a></button>
+      <article>
+        <header class="section background-dark">
+          <div class="line">
+            <h1 class="text-white margin-top-bottom-40 text-size-60 text-line-height-1">Blog</h1>
+            <p class="margin-bottom-0 text-size-16">Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis.<br>
+            Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod.</p>
+          </div>
+        </header>
+
+          <!-- Blogs -->
+
+
+        <div class="section background-white">
+          {% for blog in blogs %}
+
+          <div class="line">
+            <h2 class="text-size-40 margin-bottom-30">{{blog.blog_head}}</h2>
+            <hr class="break-small background-primary margin-bottom-30">
+            <p>{{blog.blog_para1}}</p><br>
+                <small class="text-muted">Posted on: </small>{{blog.blog_date}}
+                <small class="text-muted">Author: </small>{{blog.blog_author}}
+
+            <blockquote class="margin-top-bottom-20">
+              <h3 class="text-size-20 text-line-height-1 margin-bottom-15">Mirum est notare quam littera gothica</h3>
+              Mirum est notare quam littera gothica, quam nunc putamus parum claram, anteposuerit litterarum formas humanitatis per seacula quarta decima et quinta decima.
+            </blockquote>
+          </div>
+          {% endfor %}
+
         </div>
-        {% endfor %}
-    </div>
-</div>
+      </article>
+    </main>
 
 
 {% endblock %}

@@ -38,16 +38,16 @@ def blogs(req):
     res = template.render(data,req)
     return HttpResponse(res)
 
-def destinationsdetails(req):
-    template = loader.get_template('destinationdetails.html')
-    all_dest = Destination.objects.all()
-    data={'destinations':all_dest}
+def contact(req):
+    template = loader.get_template('contact.html')
+    all_blogs=Blog.objects.all()
+    data={}
     res = template.render(data,req)
     return HttpResponse(res)
 
-def blogdetails(req):
-    template = loader.get_template('blogdetails.html')
-    all_blogs = Blog.objects.all()
-    data = {'blogs': all_blogs}
+def gallery(req):
+    template = loader.get_template('gallery.html')
+    all_blogs=Blog.objects.all()
+    data={}
     res = template.render(data,req)
     return HttpResponse(res)

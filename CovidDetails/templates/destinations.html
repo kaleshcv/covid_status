@@ -3,22 +3,40 @@
 {% block main %}
 {% load static %}
 
-<div class="container-lg mt-5">
-        <h2>Top Destinations</h2>
-        <div class="row row-cols-1 row-cols-md-3 mt-5">
-            {% for dest in destinations %}
-             <div class="col mb-4">
-                <div class="card">
-                  <img src="{{dest.dest_img}}" class="card-img-top" alt="...">
-                  <div class="card-body">
-                      <h5 class="card-title"><a href="details">{{dest.dest_name}}</a></h5>
-                    <p class="card-text">{{dest.dest_desc}}</p>
-                    <p class="card-text"><small class="text-muted">Price Starts from: </small> {{dest.dest_price}}</p>
-                  </div>
-                </div>
-              </div>
-            {% endfor %}
+    <!-- MAIN -->
+   <!-- MAIN -->
+    <main role="main">
+      <article>
+        <header class="section background-dark">
+          <div class="line">
+            <h1 class="text-white margin-top-bottom-40 text-size-60 text-line-height-1">Travel Destinations</h1>
+            <p class="margin-bottom-0 text-size-16">Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis.<br>
+            Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod.</p>
+          </div>
+        </header>
+<!-- Destinations -->
+        <div class="section background-white">
+          <div class="line">
+            <div class="margin">
+                {% for dest in destinations %}
+                <div class="s-12 m-6 l-4">
+                    <div class="image-with-hover-overlay image-hover-zoom margin-bottom">
+                      <div class="image-hover-overlay background-primary">
+                        <div class="image-hover-overlay-content text-center padding-2x">
+                            <h3>{{dest.dest_name}}</h3>
+                          <p>{{dest.dest_desc}}</p>
+                          <p class="card-text"><small class="text-muted">Price Starts from: </small> {{dest.dest_price}}</p>
+                        </div>
+                      </div>
+                      <img src="{{dest.dest_img}}" alt="" title="Portfolio Image 1" />
+                    </div>
+               </div>
+              {% endfor %}
+            </div>
+          </div>
         </div>
-</div>
+      </article>
+    </main>
+
 
 {% endblock %}

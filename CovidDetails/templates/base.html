@@ -21,27 +21,40 @@
 <!------------------Navigation------------------------>
   <body class="size-1140">
   	<!-- PREMIUM FEATURES BUTTON -->
-  	<a target="_blank" class="hide-s" href="#" style="position:fixed;top:120px;right:-14px;z-index:10;"><img src="{% static 'img/premium-features.png' %}" alt=""></a>
+
     <!-- HEADER -->
     <header role="banner" class="position-absolute">
       <!-- Top Navigation -->
       <nav class="background-transparent background-transparent-hightlight full-width sticky">
         <div class="s-12 l-2">
           <a href="index.html" class="logo">
-            <!-- Logo White Version -->
-            <img class="logo-white" src="img/logo.png" alt="">
-            <!-- Logo Dark Version -->
-            <img class="logo-dark" src="img/logo-dark.png" alt="">
+
           </a>
         </div>
         <div class="top-nav s-12 l-10">
           <p class="nav-text"></p>
+
+
           <ul class="right chevron">
+            {% if user.is_authenticated %}
+            <li><a href="profile" style="color: red;font-weight: bold;font-size: 14px;">{{user.first_name}}</a></li>
+            {% endif %}
             <li><a href="/">Home</a></li>
             <li><a href="dest">Travel</a></li>
             <li><a href="blogs">Blog</a></li>
             <li><a href="gallery">Gallery</a></li>
             <li><a href="contact">Contact</a></li>
+
+            {% if user.is_authenticated %}
+
+            <li><a href="logout">Logout</a></li>
+
+            {% else %}
+
+            <li><a href="register">Register</a></li>
+            <li><a href="login">Login</a></li>
+            {% endif %}
+
           </ul>
         </div>
       </nav>
@@ -66,7 +79,8 @@
         <!-- Map -->
         <div class="s-12 m-12 l-6 margin-m-bottom-2x">
           <div class="s-12 grayscale center">
-            <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d1459734.5702753505!2d16.91089086619977!3d48.577103681657675!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1ssk!2ssk!4v1457640551761" width="100%" height="450" frameborder="0" style="border:0"></iframe>
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3929.383108659909!2d76.29875265096274!3d9.985178292826348!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3b080d30a126846b%3A0xc952f485f20ffebb!2sDD%20Platinum%20Planet%20Apartments%2C%20Pipeline%20Rd%2C%20Kathrikadavu%2C%20Kaloor%2C%20Ernakulam%2C%20Kerala%20682017!5e0!3m2!1sen!2sin!4v1589312539045!5m2!1sen!2sin" width="100%" height="450" frameborder="0" style="border:0"></iframe>
+
           </div>
         </div>
 
@@ -78,7 +92,7 @@
                   <i class="icon-sli-location-pin text-primary icon3x"></i>
                 </div>
                 <div class="margin-left-70 margin-bottom-30">
-                  <h3 class="margin-bottom-0">Company Address</h3>
+                  <h3 class="margin-bottom-0">Location</h3>
                   <p>Cochin<br>
                      Kerala / India / Asia
                   </p>
@@ -89,7 +103,6 @@
                 <div class="margin-left-70 margin-bottom-30">
                   <h3 class="margin-bottom-0">E-mail</h3>
                   <p>cvkalesh@gmail.com<br>
-                     info@trampers.in
                   </p>
                 </div>
                 <div class="float-left">
@@ -98,7 +111,6 @@
                 <div class="margin-left-70">
                   <h3 class="margin-bottom-0">Phone Numbers</h3>
                   <p>+919 7442 182 19<br>
-                     +919 7442 182 19<br>
                   </p>
                 </div>
             </div>
@@ -111,10 +123,9 @@
       <section class="padding background-dark full-width">
         <div class="s-12 l-6">
           <p class="text-size-12">Copyright 2020, www.trampers.in</p>
-          <p class="text-size-12">All images have been purchased from Bigstock. Do not use the images in your website.</p>
         </div>
         <div class="s-12 l-6">
-          <a class="right text-size-12" href="http://www.myresponsee.com" title="Responsee - lightweight responsive framework">Design and coding<br> by Team Trampers</a>
+          <a class="right text-size-12" href="#" title="Responsee - lightweight responsive framework">Design and coding<br> Kalesh CV</a>
         </div>
       </section>
     </footer>
@@ -123,3 +134,4 @@
     <script type="text/javascript" src="{% static 'js/template-scripts.js' %}"></script>
   </body>
 </html>
+

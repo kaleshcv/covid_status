@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+{% block title%} Post{% endblock %}
+{% block main %}
+{% load static %}
+
+
+ <!-- MAIN -->
+{% csrf_token %}
+    <main role="main">
+
+      <article>
+        <header class="section background-dark">
+          <div class="line">
+              <div><img src="{{user.profile.image.url}}" alt="{{user.profile.image.url}}" style="max-width:200px;max-height:200px;" /></div>
+            <h1 class="text-white margin-top-bottom-40 text-size-60 text-line-height-1">{{user.first_name}}</h1>
+            <p class="margin-bottom-0 text-size-16">{{user.email}}<br>
+
+            </p>
+          </div>
+        </header>
+
+        <div class="section background-white">
+
+            <form action="addpost" enctype = "multipart/form-data" class="customform" method="post">
+
+                  {% csrf_token %}
+
+                  <div class="line">
+                    <div class="margin">
+
+                      <div class="s-12 m-12"><label>Post Title</label>
+                        <input name="post_title" class="name" placeholder="Add a Title for your post"  type="text" />
+                      </div>
+
+                      <div class="s-12 m-12 "><label>New Post</label>
+                          <textarea name="post_content" class="name" placeholder="Add post here"></textarea>
+                      </div>
+
+                       <input type="hidden" name="post_owner" value="{{user.first_name}}">
+
+                    </div>
+                     <div class="s-12 m-12 l-2">
+                         <button type="submit"> Add</button>
+                     </div>
+                  </div>
+
+            </form>
+
+        </div>
+
+      </article>
+    </main>
+
+
+{% endblock %}

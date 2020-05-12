@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+{% block title%} Profile{% endblock %}
+{% block main %}
+{% load static %}
+
+
+ <!-- MAIN -->
+{% csrf_token %}
+    <main role="main">
+
+      <article>
+        <header class="section background-dark">
+          <div class="line">
+
+            <h1 class="text-white margin-top-bottom-40 text-size-60 text-line-height-1">{{user.first_name}} {{user.last_name}}</h1>
+            <p class="margin-bottom-0 text-size-16">{{user.email}}<br></p>
+
+            <div class="s-12 m-12 l-2" style="margin-top:30px;" >
+
+                <div ><a class="button button-black-stroke" href="post" style="margin-top: 30px;margin-left: 1px;background:brown;">Add new post</a></div>
+
+            </div>
+          </div>
+        </header>
+
+
+
+        <div class="section background-white">
+
+          {% for post in posts %}
+          <div class="line">
+            <h2 class="text-size-40 margin-bottom-30">{{post.post_title}}</h2><br>
+                <small class="text-muted">Author: </small><h2>{{post.post_owner}}</h2>
+                <small class="text-muted">Posted on: </small>{{post.post_date}}
+
+            <hr class="break-small background-primary margin-bottom-30">
+
+            <blockquote class="margin-top-bottom-20">
+              {{post.post_content}}
+            </blockquote>
+
+          </div>
+          {% endfor %}
+        </div>
+      </article>
+    </main>
+
+
+{% endblock %}

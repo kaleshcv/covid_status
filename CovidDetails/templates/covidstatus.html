@@ -1,41 +1,60 @@
-
 {% extends 'base.html' %}
-{% block title%} Covid status- India{% endblock %}
+{% block title%} Covid Status{% endblock %}
 {% block main %}
 {% load static %}
-<!--------------body-------------------------->
 
-<div class="card container-lg mt-5">
-  <div class="card-header">
-      <h2>Covid-19 Statewise status</h2>
-  </div>
-  <div class="card-body">
-    <blockquote class="blockquote mb-0">
 
-        <p id="date" style="font-size: 12px;font-style: italic;color: darkslategray;"></p><script>document.getElementById("date").innerHTML = Date();</script>
-            <cite title="Source Title" style="font-size: medium">Statewise data</cite>
-                <span class="badge badge-secondary">New</span>
+    <!-- MAIN -->
+    <main role="main">
+      <!-- Content -->
+      <article>
+        <header class="section background-dark">
+          <div class="line">
+            <h1 class="text-white margin-top-bottom-40 text-size-60 text-line-height-1">Covid Status</h1>
+          </div>
+        </header>
 
-                <table class="table mt-2" style="font-size: 16px;background-color:whitesmoke;">
-                  <thead style="lightblue">
-                    <th>State</th>
-                    <th class="text-center">Total Positive Cases</th>
-                    <th class="text-center">Total Recovered </th>
-                    <th class="text-center">Death</th>
-                  </thead>
 
-                  {% for state in states %}
-                  <tr>
-                    <td>{{state.state_name}}</td>
-                    <td class="text-center">{{state.new_positive}}</td>
-                    <td class="text-center">{{state.new_cured}}</td>
-                    <td class="text-center">{{state.new_death}}</td>
-                  </tr>
-                  {% endfor %}
-                </table>
 
-        <footer class="blockquote-footer">Visit Official Govt. Site <cite title="Source Title"><a href="https://www.mygov.in/corona-data/covid19-statewise-status/">www.mygov.in/corona-data/covid19-statewise-status</a></cite></footer>
-    </blockquote>
-  </div>
-</div>
+        <blockquote class="margin-top-bottom-10" style="text-align:center;">
+          <span>Total Reported</span><a style="color:darkblue;padding:20px;font-size:30px;">{{total.new_positive}}</a>
+          <span>Death</span><a style="color:Red;padding:20px;font-size:30px;">{{total.new_death}}</a>
+          <span>Recovered</span><a style="color:green;padding:20px;font-size:30px;">{{total.new_cured}}</a>
+        </blockquote>
+
+        <section class="section background-white text-center">
+        <div class="line">
+          <h2 class="text-size-50 text-center">Statewise Data </h2>
+          <hr class="break-small background-primary break-center">
+
+
+
+            <div class="margin">
+                {% for state in states %}
+
+              <div class="s-12 m-12 l-4 margin-m-bottom" style="padding:10px;">
+                <div class="padding-2x background-primary"  style="padding:10px;text-align: center;">
+
+                  <h2 class="text-thin">{{state.state}}</h2>
+
+                  Recovery<h1 style="color:black;">{{state.rp}}</h1>
+
+                  TOTAL<h1  style="color:black;">{{state.Total}}</h1>
+                  DEATH <h1  style="color:black;">{{state.death}}</h1>
+                  Recovered<h1 style="color:black;">{{state.cured}}</h1>
+                </div>
+              </div>
+              {% endfor %}
+
+            </div>
+
+
+          </div>
+
+        </section>
+
+
+
+      </article>
+    </main>
 {% endblock %}

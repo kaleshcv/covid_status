@@ -1,5 +1,6 @@
 
 {% extends 'base.html' %}
+{% block title%} Trampers - Home{% endblock %}
 {% block main %}
 {% load static %}
     <!-- MAIN -->
@@ -14,11 +15,19 @@
                 <div class="content-center-vertical line">
                   <div class="margin-top-bottom-80">
                     <!-- Title -->
-                    <h3 class="text-white margin-bottom-30 text-size-60 text-m-size-30 text-line-height-1">Tech, Travel and Blog for<br>TRAMPERS</h3>
+                    <h3 class="text-white margin-bottom-30 text-size-60 text-m-size-30 text-line-height-1">Tech, Travel and Blog for</h3><br>
+                    <h3 style="color: red;font-size: 52px;font-family: initial;font-weight: bold;">TRAMPERS</h3>
                     <div class="s-12 m-10 l-8 center"><p class="text-white text-size-14 margin-bottom-40">“Life is either a daring adventure or nothing at all” ~ Helen Keller</p></div>
                     <div class="line">
                       <div class="s-12 m-12 l-3 center">
-                        <a class="button button-white-stroke s-12" href="/">Get Started Now</a>
+
+                        {% if user.is_authenticated %}
+
+                        <a class="button button-white-stroke s-12" href="profile" >My Profile</a>
+
+                        {% else %}
+                        <a class="button button-white-stroke s-12" href="login">Login</a>
+                        {% endif %}
                       </div>       
                     </div>  
                   </div>
@@ -28,481 +37,305 @@
           </div>              
         </div>               
       </header>
-      
+
+
       <!-- Section 1 -->
-      <section class="section-small-padding background-white text-center"> 
-        <div class="line">
-          <div class="margin">
+
+      <section class="section-small-padding background-white text-center">
+        <h2 class="text-size-50 text-center">Trending</h2>
+          <hr class="break-small background-primary break-center">
+            <div class="line">
+              <div class="margin">
+
+        {% for blog in blogs %}
+
             <div class="s-12 m-12 l-4 margin-m-bottom">
-              <div class="padding-2x block-bordered">
-                <i class="icon-sli-shield icon3x text-dark center margin-bottom-30"></i>
-                <h2 class="text-thin">Unlimited Color Variants</h2>
-                <p class="margin-bottom-30">Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis</p>
-                <a class="button button-dark-stroke text-size-12" href="/">GET MORE INFO</a>
+              <div class="padding-2x block-bordered" style="height:350px;">
+                <i class="icon-sli-directions icon3x text-dark center margin-bottom-30"></i>
+                <h2 class="text-thin">{{blog.blog_head}}</h2>
+                <p class="margin-bottom-30">{{blog.blog_highlight}}</p>
+                <a class="button button-dark-stroke text-size-12" href="blogs">READ MORE</a>
               </div>
             </div>
-            <div class="s-12 m-12 l-4 margin-m-bottom">
-              <div class="padding-2x block-bordered">
-                <i class="icon-sli-umbrella icon3x text-dark center margin-bottom-30"></i>
-                <h2 class="text-thin">Parallax Background</h2>
-                <p class="margin-bottom-30">Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis</p>
-                <a class="button button-dark-stroke text-size-12" href="/">GET MORE INFO</a>
-              </div>
-            </div>
-            <div class="s-12 m-12 l-4 margin-m-bottom">
-              <div class="padding-2x block-bordered">
-                <i class="icon-sli-home icon3x text-dark center margin-bottom-30"></i>
-                <h2 class="text-thin">Clean Modern Code</h2>
-                <p class="margin-bottom-30">Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis</p>
-                <a class="button button-dark-stroke text-size-12" href="/">GET MORE INFO</a>
-              </div>
-            </div>
+
+        {% endfor %}
+
+
           </div>
         </div>
       </section>
-      
-      <!-- Section 1 -->
+
+      <!-- Section 4 -->
+      <section class="section-top-padding full-width">
+        <h2 class="text-size-50 text-center">Travel</h2>
+        <hr class="break-small background-primary break-center">
+        <div class="tabs background-primary-hightlight">
+
+          <div class="tab-item tab-active">
+              <a class="tab-label active-btn">Destinations</a>
+              <div class="tab-content lightbox-gallery">
+
+                {% for dest in destinations %}
+                <div class="s-12 m-6 l-3">
+                  <a class="image-with-hover-overlay image-hover-zoom" href="dest">
+                    <div class="image-hover-overlay background-primary">
+                      <div class="image-hover-overlay-content text-center padding-2x">
+                        <h2 class="text-thin">{{dest.dest_name}}</h2>
+                        <p>{{dest.dest_desc}}</p>
+                      </div>
+                    </div>
+                    <img src="{{dest.dest_img}}" alt="" title="Portfolio Image 1" style="height:320px;">
+                  </a>
+                </div>
+                {% endfor %}
+
+
+              </div>
+          </div>
+
+          <div class="tab-item">
+              <a class="tab-label">Hotels</a>
+              <div class="tab-content lightbox-gallery">
+                 <div class="s-12 m-6 l-3">
+                  <a class="image-with-hover-overlay image-hover-zoom" href="dest">
+                    <div class="image-hover-overlay background-primary">
+                      <div class="image-hover-overlay-content text-center padding-2x">
+                        <h2 class="text-thin">Features</h2>
+                        <p></p>
+                      </div>
+                    </div>
+                    <img src="{% static 'images/hotel1.jpg' %}" alt="" title="" style="height:320px;">
+                  </a>
+                </div>
+                   <div class="s-12 m-6 l-3">
+                  <a class="image-with-hover-overlay image-hover-zoom" href="dest">
+                    <div class="image-hover-overlay background-primary">
+                      <div class="image-hover-overlay-content text-center padding-2x">
+                        <h2 class="text-thin">Best in class rooms</h2>
+                        <p></p>
+                      </div>
+                    </div>
+                    <img src="{% static 'images/hotel2.jpg' %}" alt="" title="" style="height:320px;">
+                  </a>
+                </div>
+                   <div class="s-12 m-6 l-3">
+                  <a class="image-with-hover-overlay image-hover-zoom" href="dest">
+                    <div class="image-hover-overlay background-primary">
+                      <div class="image-hover-overlay-content text-center padding-2x">
+                        <h2 class="text-thin">Great amenities</h2>
+                        <p></p>
+                      </div>
+                    </div>
+                    <img src="{% static 'images/hotel3.jpg' %}" alt="" title="" style="height:320px;">
+                  </a>
+                </div>
+                   <div class="s-12 m-6 l-3">
+                  <a class="image-with-hover-overlay image-hover-zoom" href="dest">
+                    <div class="image-hover-overlay background-primary">
+                      <div class="image-hover-overlay-content text-center padding-2x">
+                        <h2 class="text-thin">Superb Ambiance</h2>
+                        <p></p>
+                      </div>
+                    </div>
+                    <img src="{% static 'images/hotel4.jpg' %}" alt="" title="" style="height:320px;">
+                  </a>
+                </div>
+              </div>
+            </div>
+
+
+            <div class="tab-item">
+              <a class="tab-label">Events</a>
+              <div class="tab-content lightbox-gallery">
+                <div class="s-12 m-6 l-3">
+                  <a class="image-with-hover-overlay image-hover-zoom" href="dest">
+                    <div class="image-hover-overlay background-primary">
+                      <div class="image-hover-overlay-content text-center padding-2x">
+                        <h2 class="text-thin">Explore</h2>
+                        <p></p>
+                      </div>
+                    </div>
+                    <img src="{% static 'images/event1.jpg' %}" alt="" title="" style="height:320px;">
+                  </a>
+                </div>
+                <div class="tab-content lightbox-gallery">
+                <div class="s-12 m-6 l-3">
+                  <a class="image-with-hover-overlay image-hover-zoom" href="dest">
+                    <div class="image-hover-overlay background-primary">
+                      <div class="image-hover-overlay-content text-center padding-2x">
+                        <h2 class="text-thin">More</h2>
+                        <p></p>
+                      </div>
+                    </div>
+                    <img src="{% static 'images/event2.jpg' %}" alt="" title="" style="height:320px;">
+                  </a>
+                </div>
+                  <div class="tab-content lightbox-gallery">
+                <div class="s-12 m-6 l-3">
+                  <a class="image-with-hover-overlay image-hover-zoom" href="dest">
+                    <div class="image-hover-overlay background-primary">
+                      <div class="image-hover-overlay-content text-center padding-2x">
+                        <h2 class="text-thin">Trampers</h2>
+                        <p></p>
+                      </div>
+                    </div>
+                    <img src="{% static 'images/event3.jpg' %}" alt="" title="" style="height:320px;">
+                  </a>
+                </div>
+                    <div class="tab-content lightbox-gallery">
+                <div class="s-12 m-6 l-3">
+                  <a class="image-with-hover-overlay image-hover-zoom" href="dest">
+                    <div class="image-hover-overlay background-primary">
+                      <div class="image-hover-overlay-content text-center padding-2x">
+                        <h2 class="text-thin">Know More</h2>
+                        <p></p>
+                      </div>
+                    </div>
+                    <img src="{% static 'images/event4.jpg' %}" alt="" title="" style="height:320px;">
+                  </a>
+                </div>
+              </div>
+            </div>
+         </div>
+              </div>
+            </div>
+        </div>
+      </section>
+
+      <!-- Section 3 -->
+      <section class="section">
+          <div class="line">
+            <h2 class="text-size-50 text-center">Covid-19 Status  India</h2>
+          <hr class="break-small background-primary break-center">
+              <blockquote class="margin-top-bottom-10" style="text-align:center;">
+                <span>Total Reported</span><a style="color:darkblue;padding:20px;font-size:30px;">{{total.new_positive}}</a>
+                <span>Death</span><a style="color:Red;padding:20px;font-size:30px;">{{total.new_death}}</a>
+                <span>Recovered</span><a style="color:green;padding:20px;font-size:30px;">{{total.new_cured}}</a>
+              </blockquote>
+          </div>
+          <div class="line text-center">
+
+            <div class="margin">
+
+                {% for state in states %}
+
+              <div class="s-12 m-12 l-4 margin-m-bottom" style="padding:10px;">
+                <div class="padding-2x background-primary"  style="padding:10px;text-align: center;">
+
+                  <h2 class="text-thin">{{state.state}}</h2>
+
+                  Recovery<h1 style="color:black;">{{state.rp}}</h1>
+
+                  TOTAL<h1  style="color:black;">{{state.Total}}</h1>
+                  DEATH <h1  style="color:black;">{{state.death}}</h1>
+                  Recovered<h1 style="color:black;">{{state.cured}}</h1>
+                </div>
+              </div>
+              {% endfor %}
+
+              <div class="s-12 m-12" style="margin-top:30px;" >
+
+                <div ><a class="button button-black-stroke" href="covidstatus" style="margin-top: 30px;background: brown;">View More</a></div>
+
+            </div>
+
+          </div>
+        </section>
+
+       <!-- Section 1 -->
       <section class="section">
         <div class="line">
           <h2 class="text-size-50 text-center">About Us</h2>
           <hr class="break-small background-primary break-center">
         </div>
         <div class="line">
-          <div class="margin">  
+          <div class="margin">
             <div class="s-12 m-12 l-2">
-              <p class="h1 text-size-30 margin-m-bottom-30 text-primary text-line-height-1 text-right">We Are<br> Web Design Heroes</p>
+              <p class="h1 text-size-30 margin-m-bottom-30 text-primary text-line-height-1 text-right"><br> Trampers</p>
             </div>
             <div class="s-12 m-12 l-5">
-              <p class="text-size-14 margin-m-bottom-30 text-dark">Claritas est etiam processus dynamicus, qui sequitur mutationem consuetudium lectorum. Mirum est notare quam littera gothica. Dolor in hendrerit in vulputate velit esse molestie consequat. Mirum est notare quam littera gothica. </p>
+              <p class="text-size-14 margin-m-bottom-30 text-dark">
+                Trampers is one of the best web development company in Cochin, Kerala.
+                We provide the best Social Media Marketing service and web based services to make
+                your business more profitable.
+              </p>
             </div>
             <div class="s-12 m-12 l-5">
-              <p class="text-size-14 text-dark">Mirum est notare quam littera gothica. Dolor in hendrerit in vulputate velit esse molestie consequat. Claritas est etiam processus dynamicus, qui sequitur mutationem consuetudium lectorum. Dolor in hendrerit in vulputate velit esse molestie consequat.</p>
+              <p class="text-size-14 text-dark">
+                We provide best travel packages for all of your destinations.
+                For travel related requirements like accommodation and transportation please contact us and
+                explore the best offers exclusively for you
+              </p>
             </div>
           </div>
-        </div>    
+        </div>
       </section>
-      
+
       <!-- Section 2 -->
       <section class="full-width">
-        <div class="s-12 m-12 l-6">  
+        <div class="s-12 m-12 l-6">
           <img src="{% static 'img/img-12.jpg' %}" alt="">
         </div>
         <div class="s-12 m-12 l-6">
           <div class="padding-2x">
             <div class="line">
               <div class="float-left">
-                <i class="icon-sli-drop icon3x text-dark"></i>
+                <i class="icon-sli-drop icon3x text-dark" style="font-size: 30px;" ></i>
               </div>
               <div class="margin-left-60 margin-bottom-30">
-                <h3 class="text-size-25 margin-bottom-0">Unlimited Color Variants</h3>
-                <p class="text-dark">Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat.<br> Vel illum dolore eu feugiat nulla facilisis.</p>            
+                <h3 class="text-size-25 margin-bottom-0">Travel</h3>
+                <p>Top Destinations, Industry best hotels, Best prices<br>No hidden fees. No hidden charges</p>
               </div>
             </div>
-            
+
             <div class="line">
               <div class="float-left">
-                <i class="icon-sli-screen-smartphone icon3x text-dark"></i>
+                <i class="icon-sli-screen-smartphone icon3x text-dark" style="font-size: 30px;"></i>
               </div>
               <div class="margin-left-60 margin-bottom-30">
-                <h3 class="text-size-25 margin-bottom-0">Responsive Layoute</h3>
-                <p class="text-dark">Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat.</p>            
+                <h3 class="text-size-25 margin-bottom-0">Web Development</h3>
+                <p>Business websites, Travel websites, e-com websites, Personal blog etc..</p>
               </div>
             </div>
-            
+
             <div class="line">
               <div class="float-left">
-                <i class="icon-sli-heart icon3x text-dark"></i>
+                <i class="icon-sli-heart icon3x text-dark" style="font-size: 30px;"></i>
               </div>
               <div class="margin-left-60 margin-bottom-30">
-                <h3 class="text-size-25 margin-bottom-0">Clean Minimalistic Design</h3>
-                <p>Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat.<br> Vel illum dolore eu feugiat nulla facilisis.</p>            
+                <h3 class="text-size-25 margin-bottom-0">Online Training</h3>
+                <p>Free IT training available for members<br> Area : Web Hosting, Python programming, Linux etc</p>
               </div>
             </div>
-            
+
             <div class="line">
               <div class="float-left">
-                <i class="icon-sli-chart icon3x text-dark"></i>
+                <i class="icon-sli-chart icon3x text-dark" style="font-size: 30px;"></i>
               </div>
               <div class="margin-left-60 margin-bottom-30">
-                <h3 class="text-size-25 margin-bottom-0">Tons of Animated Elements</h3>
-                <p>Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat.</p>            
+                <h3 class="text-size-25 margin-bottom-0">Blog for All</h3>
+                <p>Categories : Travel, Tech, Students, photography etc</p>
               </div>
             </div>
-            
+
             <div class="line">
               <div class="float-left">
-                <i class="icon-sli-globe-alt icon3x text-dark"></i>
+                <i class="icon-sli-globe-alt icon3x text-dark" style="font-size: 30px;"></i>
               </div>
               <div class="margin-left-60">
                 <h3 class="text-size-25 margin-bottom-0">And many more...</h3>
-                <p class="text-dark">Nam liber tempor cum soluta nobis eleifend. Duis autem vel eum iriure dolor<br> in hendrerit in vulputate velit esse molestie consequat.</p>            
-              </div>
-            </div> 
-          </div>
-        </div>
-      </section>
-      
-      <!-- Section 3 -->
-      <section class="section background-white">
-          <div class="line">
-            <h2 class="text-size-40 margin-bottom-30">Investigationes demonstraverunt lectores</h2>
-            <hr class="break-small background-primary margin-bottom-30">
-            <p class="margin-bottom-40">
-              Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.
-              Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat.
-              Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros
-              et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi.
-            </p>
-          </div>
-          <div class="line text-center">
-            <div class="margin">
-              <div class="s-12 m-12 l-4 margin-m-bottom">
-                <div class="padding-2x background-primary">
-                  <i class="icon-sli-shield icon3x text-white margin-bottom-30"></i>
-                  <h2 class="text-thin">Unlimited Color Variants</h2>
-                  <p class="margin-bottom-30">Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis</p>
-                  <a class="button button-white-stroke text-size-12" href="/">GET MORE INFO</a>
-                </div>
-              </div>
-              <div class="s-12 m-12 l-4 margin-m-bottom">
-                <div class="padding-2x background-primary">
-                  <i class="icon-sli-umbrella icon3x text-white margin-bottom-30"></i>
-                  <h2 class="text-thin">Parallax Background</h2>
-                  <p class="margin-bottom-30">Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis</p>
-                  <a class="button button-white-stroke text-size-12" href="/">GET MORE INFO</a>
-                </div>
-              </div>
-              <div class="s-12 m-12 l-4 margin-m-bottom">
-                <div class="padding-2x background-primary">
-                  <i class="icon-sli-home icon3x text-white margin-bottom-30"></i>
-                  <h2 class="text-thin">Clean Modern Code</h2>
-                  <p class="margin-bottom-30">Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis</p>
-                  <a class="button button-white-stroke text-size-12" href="/">GET MORE INFO</a>
-                </div>
+                <p>Weekend Destinations, Business events, Flight booking etc..<br>Write your travel experience and start earning with us </p>
               </div>
             </div>
           </div>
-        </section>
+        </div>
+      </section>
+
+
       
       <hr class="break margin-top-bottom-0">
-      
-      <!-- Section 4 -->
-      <section class="section-top-padding full-width">
-        <h2 class="text-size-50 text-center">Our Work</h2>
-        <hr class="break-small background-primary break-center"> 
-        <div class="tabs background-primary-hightlight">
-            <div class="tab-item tab-active">
-              <a class="tab-label active-btn">Web Design</a>
-              <div class="tab-content lightbox-gallery">
-                <div class="s-12 m-6 l-3">
-                  <a class="image-with-hover-overlay image-hover-zoom" href="#">
-                    <div class="image-hover-overlay background-primary"> 
-                      <div class="image-hover-overlay-content text-center padding-2x">
-                        <h2 class="text-thin">Lorem Ipsum Dolor</h2> 
-                        <p>Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis. Autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis.</p> 
-                      </div> 
-                    </div> 
-                    <img src="{% static 'img/portfolio/thumb-02.jpg' %}" alt="" title="Portfolio Image 1" />
-                  </a>	
-                </div>
-                <div class="s-12 m-6 l-3">
-                  <a class="image-with-hover-overlay image-hover-zoom" href="#">
-                    <div class="image-hover-overlay background-primary"> 
-                      <div class="image-hover-overlay-content text-center padding-2x">
-                        <h2 class="text-thin">Lorem Ipsum Dolor</h2> 
-                        <p>Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis. Autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis.</p> 
-                      </div> 
-                    </div> 
-                    <img src="{% static 'img/portfolio/thumb-09.jpg' %}" alt="" title="Portfolio Image 2" />
-                  </a>	
-                </div>
-                <div class="s-12 m-6 l-3">
-                  <a class="image-with-hover-overlay image-hover-zoom" href="#">
-                    <div class="image-hover-overlay background-primary"> 
-                      <div class="image-hover-overlay-content text-center padding-2x">
-                        <h2 class="text-thin">Lorem Ipsum Dolor</h2> 
-                        <p>Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis. Autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis.</p> 
-                      </div> 
-                    </div> 
-                    <img src="img/portfolio/thumb-08.jpg" alt="" title="Portfolio Image 3" />
-                  </a>	
-                </div>
-                <div class="s-12 m-6 l-3">
-                  <a class="image-with-hover-overlay image-hover-zoom" href="#">
-                    <div class="image-hover-overlay background-primary"> 
-                      <div class="image-hover-overlay-content text-center padding-2x">
-                        <h2 class="text-thin">Lorem Ipsum Dolor</h2> 
-                        <p>Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis. Autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis.</p> 
-                      </div> 
-                    </div> 
-                    <img src="img/portfolio/thumb-05.jpg" alt="" title="Portfolio Image 4" />
-                  </a>	
-                </div>
-                <div class="s-12 m-6 l-3">
-                  <a class="image-with-hover-overlay image-hover-zoom" href="#">
-                    <div class="image-hover-overlay background-primary"> 
-                      <div class="image-hover-overlay-content text-center padding-2x">
-                        <h2 class="text-thin">Lorem Ipsum Dolor</h2> 
-                        <p>Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis. Autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis.</p> 
-                      </div> 
-                    </div> 
-                    <img src="img/portfolio/thumb-06.jpg" alt="" title="Portfolio Image 5" />
-                  </a>	
-                </div>
-                <div class="s-12 m-6 l-3">
-                  <a class="image-with-hover-overlay image-hover-zoom" href="#">
-                    <div class="image-hover-overlay background-primary"> 
-                      <div class="image-hover-overlay-content text-center padding-2x">
-                        <h2 class="text-thin">Lorem Ipsum Dolor</h2> 
-                        <p>Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis. Autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis.</p> 
-                      </div> 
-                    </div> 
-                    <img src="img/portfolio/thumb-11.jpg" alt="" title="Portfolio Image 6" />
-                  </a>	
-                </div>
-                <div class="s-12 m-6 l-3">
-                  <a class="image-with-hover-overlay image-hover-zoom" href="#">
-                    <div class="image-hover-overlay background-primary"> 
-                      <div class="image-hover-overlay-content text-center padding-2x">
-                        <h2 class="text-thin">Lorem Ipsum Dolor</h2> 
-                        <p>Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis. Autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis.</p> 
-                      </div> 
-                    </div> 
-                    <img src="img/portfolio/thumb-12.jpg" alt="" title="Portfolio Image 7" />
-                  </a>	
-                </div>
-                <div class="s-12 m-6 l-3">
-                  <a class="image-with-hover-overlay image-hover-zoom" href="#">
-                    <div class="image-hover-overlay background-primary"> 
-                      <div class="image-hover-overlay-content text-center padding-2x">
-                        <h2 class="text-thin">Lorem Ipsum Dolor</h2> 
-                        <p>Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis. Autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis.</p> 
-                      </div> 
-                    </div> 
-                    <img src="img/portfolio/thumb-07.jpg" alt="" title="Portfolio Image 8" />
-                  </a>	
-                </div>
-              </div>  
-            </div>
-            <div class="tab-item">
-              <a class="tab-label">Graphic Design</a>
-              <div class="tab-content lightbox-gallery">
-                <div class="s-12 m-6 l-3">
-                  <a class="image-with-hover-overlay image-hover-zoom" href="#">
-                    <div class="image-hover-overlay background-primary"> 
-                      <div class="image-hover-overlay-content text-center padding-2x">
-                        <h2 class="text-thin">Lorem Ipsum Dolor</h2> 
-                        <p>Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis. Autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis.</p> 
-                      </div> 
-                    </div> 
-                    <img src="{% static 'img/portfolio/thumb-04.jpg' %}" alt="" title="Portfolio Image 1" />
-                  </a>	
-                </div>
-                <div class="s-12 m-6 l-3">
-                  <a class="image-with-hover-overlay image-hover-zoom" href="#">
-                    <div class="image-hover-overlay background-primary"> 
-                      <div class="image-hover-overlay-content text-center padding-2x">
-                        <h2 class="text-thin">Lorem Ipsum Dolor</h2> 
-                        <p>Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis. Autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis.</p> 
-                      </div> 
-                    </div> 
-                    <img src="img/portfolio/thumb-06.jpg" alt="" title="Portfolio Image 2" />
-                  </a>	
-                </div>
-                <div class="s-12 m-6 l-3">
-                  <a class="image-with-hover-overlay image-hover-zoom" href="#">
-                    <div class="image-hover-overlay background-primary"> 
-                      <div class="image-hover-overlay-content text-center padding-2x">
-                        <h2 class="text-thin">Lorem Ipsum Dolor</h2> 
-                        <p>Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis. Autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis.</p> 
-                      </div> 
-                    </div> 
-                    <img src="img/portfolio/thumb-13.jpg" alt="" title="Portfolio Image 3" />
-                  </a>	
-                </div>
-                <div class="s-12 m-6 l-3">
-                  <a class="image-with-hover-overlay image-hover-zoom" href="#">
-                    <div class="image-hover-overlay background-primary"> 
-                      <div class="image-hover-overlay-content text-center padding-2x">
-                        <h2 class="text-thin">Lorem Ipsum Dolor</h2> 
-                        <p>Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis. Autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis.</p> 
-                      </div> 
-                    </div> 
-                    <img src="img/portfolio/thumb-05.jpg" alt="" title="Portfolio Image 4" />
-                  </a>	
-                </div>
-                <div class="s-12 m-6 l-3">
-                  <a class="image-with-hover-overlay image-hover-zoom" href="#">
-                    <div class="image-hover-overlay background-primary"> 
-                      <div class="image-hover-overlay-content text-center padding-2x">
-                        <h2 class="text-thin">Lorem Ipsum Dolor</h2> 
-                        <p>Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis. Autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis.</p> 
-                      </div> 
-                    </div> 
-                    <img src="img/portfolio/thumb-12.jpg" alt="" title="Portfolio Image 5" />
-                  </a>	
-                </div>
-                <div class="s-12 m-6 l-3">
-                  <a class="image-with-hover-overlay image-hover-zoom" href="#">
-                    <div class="image-hover-overlay background-primary"> 
-                      <div class="image-hover-overlay-content text-center padding-2x">
-                        <h2 class="text-thin">Lorem Ipsum Dolor</h2> 
-                        <p>Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis. Autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis.</p> 
-                      </div> 
-                    </div> 
-                    <img src="img/portfolio/thumb-14.jpg" alt="" title="Portfolio Image 6" />
-                  </a>	
-                </div>
-                <div class="s-12 m-6 l-3">
-                  <a class="image-with-hover-overlay image-hover-zoom" href="#">
-                    <div class="image-hover-overlay background-primary"> 
-                      <div class="image-hover-overlay-content text-center padding-2x">
-                        <h2 class="text-thin">Lorem Ipsum Dolor</h2> 
-                        <p>Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis. Autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis.</p> 
-                      </div> 
-                    </div> 
-                    <img src="img/portfolio/thumb-07.jpg" alt="" title="Portfolio Image 7" />
-                  </a>	
-                </div>
-                <div class="s-12 m-6 l-3">
-                  <a class="image-with-hover-overlay image-hover-zoom" href="#">
-                    <div class="image-hover-overlay background-primary"> 
-                      <div class="image-hover-overlay-content text-center padding-2x">
-                        <h2 class="text-thin">Lorem Ipsum Dolor</h2> 
-                        <p>Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis. Autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis.</p> 
-                      </div> 
-                    </div> 
-                    <img src="img/portfolio/thumb-10.jpg" alt="" title="Portfolio Image 8" />
-                  </a>	
-                </div>
-              </div>  
-            </div>
-            <div class="tab-item">
-              <a class="tab-label">Campaigns</a>
-              <div class="tab-content lightbox-gallery">
-                <div class="s-12 m-6 l-3">
-                  <a class="image-with-hover-overlay image-hover-zoom" href="#">
-                    <div class="image-hover-overlay background-primary"> 
-                      <div class="image-hover-overlay-content text-center padding-2x">
-                        <h2 class="text-thin">Lorem Ipsum Dolor</h2> 
-                        <p>Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis. Autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis.</p> 
-                      </div> 
-                    </div> 
-                    <img src="{% static 'img/portfolio/thumb-03.jpg' %}" alt="" title="Portfolio Image 9" />
-                  </a>	
-                </div>
-                <div class="s-12 m-6 l-3">
-                  <a class="image-with-hover-overlay image-hover-zoom" href="#">
-                    <div class="image-hover-overlay background-primary"> 
-                      <div class="image-hover-overlay-content text-center padding-2x">
-                        <h2 class="text-thin">Lorem Ipsum Dolor</h2> 
-                        <p>Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis. Autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis.</p> 
-                      </div> 
-                    </div> 
-                    <img src="img/portfolio/thumb-01.jpg" alt="" title="Portfolio Image 10" />
-                  </a>	
-                </div>
-                <div class="s-12 m-6 l-3">
-                  <a class="image-with-hover-overlay image-hover-zoom" href="#">
-                    <div class="image-hover-overlay background-primary"> 
-                      <div class="image-hover-overlay-content text-center padding-2x">
-                        <h2 class="text-thin">Lorem Ipsum Dolor</h2> 
-                        <p>Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis. Autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis.</p> 
-                      </div> 
-                    </div> 
-                    <img src="img/portfolio/thumb-09.jpg" alt="" title="Portfolio Image 11" />
-                  </a>	
-                </div>
-                <div class="s-12 m-6 l-3">
-                  <a class="image-with-hover-overlay image-hover-zoom" href="#">
-                    <div class="image-hover-overlay background-primary"> 
-                      <div class="image-hover-overlay-content text-center padding-2x">
-                        <h2 class="text-thin">Lorem Ipsum Dolor</h2> 
-                        <p>Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis. Autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis.</p> 
-                      </div> 
-                    </div> 
-                    <img src="img/portfolio/thumb-14.jpg" alt="" title="Portfolio Image 12" />
-                  </a>	
-                </div>
-                <div class="s-12 m-6 l-3">
-                  <a class="image-with-hover-overlay image-hover-zoom" href="#">
-                    <div class="image-hover-overlay background-primary"> 
-                      <div class="image-hover-overlay-content text-center padding-2x">
-                        <h2 class="text-thin">Lorem Ipsum Dolor</h2> 
-                        <p>Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis. Autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis.</p> 
-                      </div> 
-                    </div> 
-                    <img src="img/portfolio/thumb-07.jpg" alt="" title="Portfolio Image 13" />
-                  </a>	
-                </div>
-                <div class="s-12 m-6 l-3">
-                  <a class="image-with-hover-overlay image-hover-zoom" href="#">
-                    <div class="image-hover-overlay background-primary"> 
-                      <div class="image-hover-overlay-content text-center padding-2x">
-                        <h2 class="text-thin">Lorem Ipsum Dolor</h2> 
-                        <p>Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis. Autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis.</p> 
-                      </div> 
-                    </div> 
-                    <img src="img/portfolio/thumb-13.jpg" alt="" title="Portfolio Image 14" />
-                  </a>	
-                </div>
-                <div class="s-12 m-6 l-3">
-                  <a class="image-with-hover-overlay image-hover-zoom" href="#">
-                    <div class="image-hover-overlay background-primary"> 
-                      <div class="image-hover-overlay-content text-center padding-2x">
-                        <h2 class="text-thin">Lorem Ipsum Dolor</h2> 
-                        <p>Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis. Autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis.</p> 
-                      </div> 
-                    </div> 
-                    <img src="img/portfolio/thumb-11.jpg" alt="" title="Portfolio Image 15" />
-                  </a>	
-                </div>
-                <div class="s-12 m-6 l-3">
-                  <a class="image-with-hover-overlay image-hover-zoom" href="#">
-                    <div class="image-hover-overlay background-primary"> 
-                      <div class="image-hover-overlay-content text-center padding-2x">
-                        <h2 class="text-thin">Lorem Ipsum Dolor</h2> 
-                        <p>Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis. Autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis.</p> 
-                      </div> 
-                    </div> 
-                    <img src="img/portfolio/thumb-04.jpg" alt="" title="Portfolio Image 16" />
-                  </a>	
-                </div>
-              </div>  
-            </div>
-         </div>
-      </section>
-      
-      <!-- Section 5 -->    
-      <section class="section background-white text-center">
-        <div class="line">
-          <h2 class="text-size-50 text-center">Testimonials</h2>
-          <hr class="break-small background-primary break-center">
-          <div class="carousel-default owl-carousel carousel-wide-arrows">
-            <div class="item">
-              <div class="s-12 m-12 l-7 center text-center">
-                <img class="image-testimonial-small" src="{% static 'img/testimonials-04.png' %}" alt="">
-                <p class="h1 margin-bottom text-size-20">Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis</p>
-                <p class="h1 text-size-16">Scott Star / CEO / Company</p>
-              </div>
-            </div>
-            <div class="item"> 
-              <div class="s-12 m-12 l-7 center text-center">
-                <img class="image-testimonial-small" src="img/testimonials-05.png" alt="">
-                <p class="h1 margin-bottom text-size-20">Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis</p>
-                <p class="h1 text-size-16">Mark Stoner / Web Developer / Company</h5>
-              </div>
-            </div>
-            <div class="item">
-              <div class="s-12 m-12 l-7 center text-center">
-                <img class="image-testimonial-small" src="img/testimonials-06.png" alt="">
-                <p class="h1 margin-bottom text-size-20">Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis</p>
-                <p class="h1 text-size-16">Jane Naismith / Web Designer / Company</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+
+
     </main>
     
 {% endblock %}

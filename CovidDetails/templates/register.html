@@ -1,0 +1,89 @@
+{% extends 'base.html' %}
+{% block title%}Register{% endblock %}
+{% block main %}
+{% load static %}
+
+    <!-- MAIN -->
+    <main role="main">
+      <!-- Content -->
+      <article>
+        <header class="section background-dark">
+          <div class="line">
+            <h1 class="text-white margin-top-bottom-40 text-size-60 text-line-height-1">Registration</h1>
+            <p class="margin-bottom-0 text-size-16"></p>
+          </div>
+        </header>
+
+
+          <div class="line" style="margin-top:100px;">
+            <div class="margin">
+              <!-- Contact Form -->
+              <div class="s-12 m-12 l-6">
+                <h2 class="margin-bottom-10 mt-5">Registration</h2>
+
+                <form action="register" name="contactForm" class="customform" method="post">
+
+                  {% csrf_token %}
+                  <div class="line">
+                    <div class="margin">
+
+                      <div class="s-12 m-12 l-6">
+                        <input name="first_name" class="name" placeholder="Your First Name" type="text" />
+                      </div>
+
+                      <div class="s-12 m-12 l-6">
+                        <input name="last_name" class="name" placeholder="Your Last Name"  type="text" />
+                      </div>
+
+                      <div class="s-12 m-12 l-6">
+                        <input name="username" class="name" placeholder="Username"  type="text" />
+                      </div>
+
+                      <div class="s-12 m-12 l-6">
+                        <input name="email" class="required email" placeholder="Your e-mail" type="email" />
+                      </div>
+
+                      <div class="s-12 m-12 l-6">
+                        <input name="password1" class="name" placeholder="Password"  type="password" />
+                      </div>
+
+                      <div class="s-12 m-12 l-6">
+                        <input name="password2" class="name" placeholder="Confirm Password"  type="password" />
+                      </div>
+
+                    </div>
+                  </div>
+                 <div class="s-12"><button class="s-12 submit-form button background-primary text-white" type="submit">Submit</button></div>
+                </form>
+
+ <!----------------errror messages-------->
+
+                <div>
+                    {% for message in messages %}
+                    <h4>Error : {{message}}</h4>
+                    {% endfor %}
+                </div>
+              </div>
+            </div>
+
+            <h2 class="margin-bottom-10 mt-5"><a href="login">Already Registered ? Login now</a></h2>
+          </div>
+
+        <!----------------images--------->
+
+        <div class="section background-white">
+          <div class="line">
+            <div class="margin">
+
+
+
+
+
+            </div>
+          </div>
+
+        </div>
+      </article>
+    </main>
+
+ {% endblock %}

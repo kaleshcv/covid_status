@@ -11,7 +11,7 @@ def covidstatus(req):
     x1 = x.text
     covid_data = json.loads(x1)
 
-    total=covid_data[38]
+    total=covid_data[37]
 
     statenumbers = [0, 4, 9, 11, 14, 16, 17, 20, 21, 28, 29, 31, 33, 35, 36]
     statewisedata = []
@@ -44,7 +44,7 @@ def homepage(req):
     x1 = x.text
     covid_data = json.loads(x1)
 
-    total = covid_data[38]
+    total = covid_data[37]
 
     statenumbers = [16, 17, 33,21,31,9]
     statewisedata = []

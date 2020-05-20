@@ -10,8 +10,8 @@ def covidstatus(req):
     x = requests.get("https://www.mohfw.gov.in/data/datanew.json")
     x1 = x.text
     covid_data = json.loads(x1)
-
-    total=covid_data[37]
+    n = len(covid_data)
+    total = covid_data[n-1]
 
     statenumbers = [0, 4, 9, 11, 14, 16, 17, 20, 21, 28, 29, 31, 33, 35, 36]
     statewisedata = []
@@ -43,8 +43,8 @@ def homepage(req):
     x = requests.get("https://www.mohfw.gov.in/data/datanew.json")
     x1 = x.text
     covid_data = json.loads(x1)
-
-    total = covid_data[37]
+    n=len(covid_data)
+    total = covid_data[n-1]
 
     statenumbers = [16, 17, 33,21,31,9]
     statewisedata = []
